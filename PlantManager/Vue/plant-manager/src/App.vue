@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-   <h1>Hello world </h1>
+  <router-view />
+   <nav>
+   <router-link v-bind:to='{name: "GardenView"}' >My Garden</router-link>
+   </nav>
   </div>
 </template>
 
