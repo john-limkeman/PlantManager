@@ -25,10 +25,18 @@
     
       </div>
     </div>
+    <aside >
+      <div v-if='PanelOpen' id='openPanel'>
+      <PlantMenu/>
+      </div>
+      <div v-on:click='togglePanel()' v-else id=closedPanel>
+      </div>
+    </aside>
   </div>
 </template>
 
 <script>
+import PlantMenu from '@/components/PlantMenu.vue'
 export default {
   data() {
     return {
@@ -50,13 +58,24 @@ export default {
           plot: 5,
         },
       ],
+       PanelOpen : false
     };
+  },
+  components: {
+    PlantMenu
   },
   methods: {
     /*  ChangeGrid(){
       document.documentElement.style.setProperty("--rowNum", this.rowNum);
       document.documentElement.style.setProperty("--columnNum", this.columnNum);
     }, */
+    togglePanel(){
+            if (this.PanelOpen){
+                this.PanelOpen = false;
+            } else {
+                this.PanelOpen = true;
+            }
+        },
     plantPlots(x) {
       let chosen =[];
       this.plants.forEach((plant) => {
@@ -158,4 +177,25 @@ img{
   transition-property: background-color;
   background-color: lightgreen;
 } */
+#closedPanel{
+     position: fixed;
+    right:0px;
+    top: 20%;
+    bottom: 20%;
+    width: 30px;
+    background-color: lightgoldenrodyellow;
+    
+}
+#openPanel{
+    position: fixed;
+    right:0px;
+    top: 20%;
+    bottom: 20%;
+    width: 100px;
+    background-color: lightgoldenrodyellow;
+}
+#closedPanel:hover{
+  cursor:pointer;
+  background-color:lightsalmon;
+}
 </style>

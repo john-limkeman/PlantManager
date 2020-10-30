@@ -25,4 +25,13 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+nav{
+display: block;
+position: fixed;
+right: 0px;
+top: 0px;
+width: 100%;
+border: solid black 2px;
+background-color: lightgreen;
+}
 </style>
