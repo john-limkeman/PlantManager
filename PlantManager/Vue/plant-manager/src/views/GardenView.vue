@@ -117,12 +117,12 @@ export default {
     },
   },
   created() {
-    /* this.plants.forEach((plant) => {
+    this.plants.forEach((plant) => {
       let plot = plant.plot;
       document.getElementById("plot" + plot).style.backgroundColor =
-          "#462214";
-    }) 
-    ****NOT WORKING YET**** */
+          "rgb(70, 34, 20)";
+    })
+    //****NOT WORKING YET**** 
   },
 };
 </script>
