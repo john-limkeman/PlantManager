@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='container'>
     <h1>MY GARDEN</h1>
     <!--<form v-on:submit.prevent='ChangeGrid()'>
     <label for="rows">Rows</label>
@@ -20,7 +20,7 @@
         @dragenter.prevent
       >
       <div v-for='plant in plantPlots(plot.id)' v-bind:key='plant.id' draggable @dragstart='startDrag($event, plant)'>
-        <p>{{plant.name}}</p>
+        <img v-bind:src='plant.img'/>
       </div>
     
       </div>
@@ -115,6 +115,10 @@ export default {
   --rowNum: 4;
   --columnNum: 4;
 }
+#container{
+  display: flex;
+  justify-content: center;
+}
 #gardenBox {
   display: grid;
   border: solid black 2px;
@@ -133,21 +137,25 @@ export default {
     "81 82 83 84 85 86 87 88 89 90"
     "91 92 93 94 95 96 97 98 99 100";
   grid-gap: 3px;
-  width: 700px;
-  height: 700px;
+  width: 1030px;
+  height: 1030px;
 }
-p{
-  background-color:yellow;
+img{
+  max-height: 50px;
+  max-width: 50px;
 }
 .plotBox {
   background-color: green;
   border: solid, black, 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
 }
 /* .plotBox:hover{
   transition-duration: 1s;
   transition-property: background-color;
   background-color: lightgreen;
 } */
-#plotBox1 {
-}
 </style>
