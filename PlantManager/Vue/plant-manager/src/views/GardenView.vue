@@ -1,16 +1,15 @@
 <template>
   <div>
     <h1>MY GARDEN</h1>
-    <form v-on:submit.prevent='ChangeGrid()'>
+    <!--<form v-on:submit.prevent='ChangeGrid()'>
     <label for="rows">Rows</label>
       <input type="number" name='rows' v-model="rowNum"> 
       <label for="columns">Columns</label>
       <input type="number" name='columns' v-model="columnNum">
       <button>Update</button>
-    </form>
+    </form> -->
     <div id='gardenBox'>
       <div v-for="plot in plots" v-bind:key="plot.id" :id='"plot" + plot.id' v-on:click.prevent='toggleColor(plot)' class='plotBox'> 
-      DIG
       </div>
     </div>
   </div>
@@ -31,13 +30,13 @@ export default {
       document.documentElement.style.setProperty("--columnNum", this.columnNum);
     },
     toggleColor(plot){
-      document.getElementById("plot" + plot.id).style.backgroundColor = 'black';
-      // let item = document.getElementById("plot" + plot.id).style.background-color;
-      // if(item == 'green'){
-      //   item = 'brown';
-      // } else {
-      //   item = 'green';
-      // }
+      // document.getElementById("plot" + plot.id).style.backgroundColor = 'black';
+      let item = document.getElementById("plot" + plot.id).style.backgroundColor;
+      if(item == 'green' || item == 'lightgreen'){
+       document.getElementById("plot" + plot.id).style.backgroundColor = '#462214';
+      } else {
+        document.getElementById("plot" + plot.id).style.backgroundColor = 'green';
+      }
     }
   },
   computed: {
@@ -86,6 +85,11 @@ export default {
  border: solid, black, 2px;
 }
 .plotBox:hover{
+  transition-duration: 1s;
+  transition-property: background-color;
   background-color: lightgreen;
+}
+#plotBox1{
+
 }
 </style>
