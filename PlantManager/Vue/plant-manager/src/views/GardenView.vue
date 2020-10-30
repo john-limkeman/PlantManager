@@ -26,10 +26,13 @@
       </div>
     </div>
     <aside >
+
       <div v-if='PanelOpen' id='openPanel'>
+       <button v-on:click='togglePanel()'>CLOSE</button>
       <PlantMenu/>
       </div>
-      <div v-on:click='togglePanel()' v-else id=closedPanel>
+      <div v-else id=closedPanel>
+      <button v-on:click='togglePanel()'>OPEN</button>
       </div>
     </aside>
   </div>

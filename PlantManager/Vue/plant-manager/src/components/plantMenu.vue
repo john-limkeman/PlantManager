@@ -4,6 +4,7 @@
       <div>
         <h4>Add Plant</h4>
       </div>
+      
   </div>
 </template>
 
