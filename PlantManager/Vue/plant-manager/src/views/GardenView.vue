@@ -31,8 +31,7 @@
        <button v-on:click='togglePanel()'>CLOSE</button>
       <PlantMenu/>
       </div>
-      <div v-else id=closedPanel>
-      <button v-on:click='togglePanel()'>OPEN</button>
+      <div v-else id=closedPanel v-on:click='togglePanel()'>
       </div>
     </aside>
   </div>
@@ -108,6 +107,8 @@ export default {
       const id = evt.dataTransfer.getData('id')
       const item = this.plants.find(plant => plant.id == id)
       item.plot = plot.id
+       document.getElementById("plot" + plot.id).style.backgroundColor =
+          "#462214";
     },
   },
   computed: {
@@ -139,7 +140,7 @@ export default {
 }
 #container{
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
 }
 #gardenBox {
   display: grid;
@@ -194,7 +195,7 @@ img{
     right:0px;
     top: 20%;
     bottom: 20%;
-    width: 100px;
+    width: 200px;
     background-color: lightgoldenrodyellow;
 }
 #closedPanel:hover{
