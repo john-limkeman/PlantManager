@@ -2,7 +2,9 @@
   <div id="app">
   <router-view />
    <nav>
-   <router-link v-bind:to='{name: "GardenView"}' >My Garden</router-link>
+   <router-link v-bind:to='{name: "GardenView"}' class='navlink'>My Garden</router-link> &nbsp;|&nbsp;
+   <router-link v-bind:to='{name: "PlantList"}' class='navlink'>My Plants</router-link> &nbsp;|&nbsp;
+   <router-link v-bind:to='{name: "Login"}' class='navlink'>Logout</router-link>
    </nav>
   </div>
 </template>

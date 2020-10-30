@@ -1,13 +1,6 @@
 <template>
   <div class='container'>
     <h1>MY GARDEN</h1>
-    <!--<form v-on:submit.prevent='ChangeGrid()'>
-    <label for="rows">Rows</label>
-      <input type="number" name='rows' v-model="rowNum"> 
-      <label for="columns">Columns</label>
-      <input type="number" name='columns' v-model="columnNum">
-      <button>Update</button>
-    </form> -->
     <div id="gardenBox">
       <div
         v-for="plot in plots"
@@ -63,14 +56,28 @@ export default {
        PanelOpen : false
     };
   },
+    computed: {
+      plots() {
+        let plots = [];
+        for (let i = 1; i < 101; i++) {
+          plots.push({ id: i, type: "plot" });
+        }
+        return plots;
+      },
+      plantByPlot(plotId){
+        let chosen = [];
+        this.plants.forEach((plant) => {
+          if (plant.plot == plotId) {
+            chosen = plant;
+          }
+        });
+        return chosen;
+      }
+    },
   components: {
     PlantMenu
   },
   methods: {
-    /*  ChangeGrid(){
-      document.documentElement.style.setProperty("--rowNum", this.rowNum);
-      document.documentElement.style.setProperty("--columnNum", this.columnNum);
-    }, */
     togglePanel(){
             if (this.PanelOpen){
                 this.PanelOpen = false;
@@ -88,14 +95,12 @@ export default {
       return chosen;
     },
     toggleColor(plot) {
-      let item = document.getElementById("plot" + plot.id).style
-        .backgroundColor;
-      if (item == "green" || item == "lightgreen") {
-        document.getElementById("plot" + plot.id).style.backgroundColor =
-          "#462214";
-      } else {
+      if (document.getElementById("plot" + plot.id).style.backgroundColor =='rgb(70, 34, 20)') { //CAN'T dig backwards?
         document.getElementById("plot" + plot.id).style.backgroundColor =
           "green";
+      } else {
+        document.getElementById("plot" + plot.id).style.backgroundColor =
+          "rgb(70, 34, 20)" ;
       }
     },
     startDrag: (evt, plant) => {
@@ -108,28 +113,17 @@ export default {
       const item = this.plants.find(plant => plant.id == id)
       item.plot = plot.id
        document.getElementById("plot" + plot.id).style.backgroundColor =
+          "rgb(70, 34, 20)";
+    },
+  },
+  created() {
+    /* this.plants.forEach((plant) => {
+      let plot = plant.plot;
+      document.getElementById("plot" + plot).style.backgroundColor =
           "#462214";
-    },
+    }) 
+    ****NOT WORKING YET**** */
   },
-  computed: {
-    plots() {
-      let plots = [];
-      for (let i = 1; i < 101; i++) {
-        plots.push({ id: i, type: "plot" });
-      }
-      return plots;
-    },
-    plantByPlot(plotId){
-      let chosen = [];
-      this.plants.forEach((plant) => {
-        if (plant.plot == plotId) {
-          chosen = plant;
-        }
-      });
-      return chosen;
-    }
-  },
-  created() {},
 };
 </script>
 
@@ -145,8 +139,6 @@ export default {
 #gardenBox {
   display: grid;
   border: solid black 2px;
-  /*grid-template-columns: repeat(var(--columnNum), 1fr);
-    grid-template-rows: repeat(var(--rowNum), 1fr);*/
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
     "1 2 3 4 5 6 7 8 9 10"
@@ -176,11 +168,11 @@ img{
   height: 100px;
   width: 100px;
 }
-/* .plotBox:hover{
+.plotBox:hover{
   transition-duration: 1s;
   transition-property: background-color;
   background-color: lightgreen;
-} */
+}
 #closedPanel{
      position: fixed;
     right:0px;
