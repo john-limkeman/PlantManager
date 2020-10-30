@@ -31,7 +31,7 @@ export default {
       document.documentElement.style.setProperty("--columnNum", this.columnNum);
     },
     toggleColor(plot){
-      document.getElementById("plot" + plot.id).style.backgroundColor = 'brown';
+      document.getElementById("plot" + plot.id).style.backgroundColor = 'black';
       // let item = document.getElementById("plot" + plot.id).style.background-color;
       // if(item == 'green'){
       //   item = 'brown';
