@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import GardenView from '@/views/GardenView.vue'
 import store from '@/store/index.js'
-
+import GardenView from '@/views/GardenView.vue'
+import PlantList from '@/views/PlantList.vue'
+import Login from '@/views/Login.vue'
 Vue.use(Router)
 
 /**
@@ -22,6 +23,16 @@ const router = new Router({
         path: '/myGarden',
         name: 'GardenView',
         component: GardenView
+    },
+    {
+        path: '/myPlants',
+        name: 'PlantList',
+        component: PlantList
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]})
 

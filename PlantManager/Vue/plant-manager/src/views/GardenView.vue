@@ -1,13 +1,6 @@
 <template>
   <div class='container'>
     <h1>MY GARDEN</h1>
-    <!--<form v-on:submit.prevent='ChangeGrid()'>
-    <label for="rows">Rows</label>
-      <input type="number" name='rows' v-model="rowNum"> 
-      <label for="columns">Columns</label>
-      <input type="number" name='columns' v-model="columnNum">
-      <button>Update</button>
-    </form> -->
     <div id="gardenBox">
       <div
         v-for="plot in plots"
@@ -25,10 +18,20 @@
     
       </div>
     </div>
+    <aside >
+
+      <div v-if='PanelOpen' id='openPanel'>
+       <button v-on:click='togglePanel()'>CLOSE</button>
+      <PlantMenu/>
+      </div>
+      <div v-else id=closedPanel v-on:click='togglePanel()'>
+      </div>
+    </aside>
   </div>
 </template>
 
 <script>
+import PlantMenu from '@/components/PlantMenu.vue'
 export default {
   data() {
     return {
@@ -50,13 +53,38 @@ export default {
           plot: 5,
         },
       ],
+       PanelOpen : false
     };
   },
+    computed: {
+      plots() {
+        let plots = [];
+        for (let i = 1; i < 101; i++) {
+          plots.push({ id: i, type: "plot" });
+        }
+        return plots;
+      },
+      plantByPlot(plotId){
+        let chosen = [];
+        this.plants.forEach((plant) => {
+          if (plant.plot == plotId) {
+            chosen = plant;
+          }
+        });
+        return chosen;
+      }
+    },
+  components: {
+    PlantMenu
+  },
   methods: {
-    /*  ChangeGrid(){
-      document.documentElement.style.setProperty("--rowNum", this.rowNum);
-      document.documentElement.style.setProperty("--columnNum", this.columnNum);
-    }, */
+    togglePanel(){
+            if (this.PanelOpen){
+                this.PanelOpen = false;
+            } else {
+                this.PanelOpen = true;
+            }
+        },
     plantPlots(x) {
       let chosen =[];
       this.plants.forEach((plant) => {
@@ -67,14 +95,12 @@ export default {
       return chosen;
     },
     toggleColor(plot) {
-      let item = document.getElementById("plot" + plot.id).style
-        .backgroundColor;
-      if (item == "green" || item == "lightgreen") {
-        document.getElementById("plot" + plot.id).style.backgroundColor =
-          "#462214";
-      } else {
+      if (document.getElementById("plot" + plot.id).style.backgroundColor =='rgb(70, 34, 20)') { //CAN'T dig backwards?
         document.getElementById("plot" + plot.id).style.backgroundColor =
           "green";
+      } else {
+        document.getElementById("plot" + plot.id).style.backgroundColor =
+          "rgb(70, 34, 20)" ;
       }
     },
     startDrag: (evt, plant) => {
@@ -86,27 +112,18 @@ export default {
       const id = evt.dataTransfer.getData('id')
       const item = this.plants.find(plant => plant.id == id)
       item.plot = plot.id
+       document.getElementById("plot" + plot.id).style.backgroundColor =
+          "rgb(70, 34, 20)";
     },
   },
-  computed: {
-    plots() {
-      let plots = [];
-      for (let i = 1; i < 101; i++) {
-        plots.push({ id: i, type: "plot" });
-      }
-      return plots;
-    },
-    plantByPlot(plotId){
-      let chosen = [];
-      this.plants.forEach((plant) => {
-        if (plant.plot == plotId) {
-          chosen = plant;
-        }
-      });
-      return chosen;
-    }
+  created() {
+    this.plants.forEach((plant) => {
+      let plot = plant.plot;
+      document.getElementById("plot" + plot).style.backgroundColor =
+          "rgb(70, 34, 20)";
+    })
+    //****NOT WORKING YET**** 
   },
-  created() {},
 };
 </script>
 
@@ -117,13 +134,11 @@ export default {
 }
 #container{
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
 }
 #gardenBox {
   display: grid;
   border: solid black 2px;
-  /*grid-template-columns: repeat(var(--columnNum), 1fr);
-    grid-template-rows: repeat(var(--rowNum), 1fr);*/
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
     "1 2 3 4 5 6 7 8 9 10"
@@ -153,9 +168,30 @@ img{
   height: 100px;
   width: 100px;
 }
-/* .plotBox:hover{
+.plotBox:hover{
   transition-duration: 1s;
   transition-property: background-color;
   background-color: lightgreen;
-} */
+}
+#closedPanel{
+     position: fixed;
+    right:0px;
+    top: 20%;
+    bottom: 20%;
+    width: 30px;
+    background-color: lightgoldenrodyellow;
+    
+}
+#openPanel{
+    position: fixed;
+    right:0px;
+    top: 20%;
+    bottom: 20%;
+    width: 200px;
+    background-color: lightgoldenrodyellow;
+}
+#closedPanel:hover{
+  cursor:pointer;
+  background-color:lightsalmon;
+}
 </style>

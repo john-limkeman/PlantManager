@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Plant {
 
-	private long id; //for DB
-	private String name; // given by user
+	private long id; 
+	private String name;
 	private int userId;
 	private int gardenId;
 	private int waterRate;
@@ -14,7 +14,14 @@ public class Plant {
 	private Date dateFlowered;
 	private Date dateProduced;
 	private int plot;
+	private int harvest; //needs entry in DB and units?
 	
+	public int getHarvest() {
+		return harvest;
+	}
+	public void setHarvest(int harvest) {
+		this.harvest = harvest;
+	}
 	public long getId() {
 		return id;
 	}

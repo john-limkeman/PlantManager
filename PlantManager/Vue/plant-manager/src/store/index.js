@@ -16,7 +16,9 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    logIn: false
+    logIn: false,
+    gardenPlot: [], //will need mutators added to login procedures
+    plants: [], //will need mutators added to login procedures
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,5 +39,11 @@ export default new Vuex.Store({
       axios.defaults.headers.common = {};
       state.logIn = false;
     },
+    SET_GARDEN(state, garden){
+      state.gardenPlot = garden;
+    },
+    SET_PLANTS(state, plants){
+      state.plants = plants;
+    }
   }
 })
