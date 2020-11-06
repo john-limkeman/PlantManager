@@ -20,9 +20,16 @@ public class PlantController {
 	@Autowired
 	PlantDAO dao;
 
-	@RequestMapping(path = "{id}/plant", method = RequestMethod.GET)
+	//controller to get all plants by a user
+	@RequestMapping(path = "{id}/plants", method = RequestMethod.GET)
 	public List <Plant> getAllPlantsByUser(@PathVariable long id) {
 		return dao.getAllPlantsByUserId(id);
+	}
+	
+	//controller to get a plant by its id
+	@RequestMapping(path = "/plant/{id}", method = RequestMethod.GET)
+	public Plant getAllPlantById(@PathVariable long id) {
+		return dao.getPlantById(id);
 	}
 	
 }

@@ -25,6 +25,18 @@ public class JDBCPlantsDAO implements PlantDAO {
 		}
 		return output;
 	}
+	
+	@Override
+	public Plant getPlantById(long id) {
+		Plant plant = new Plant();
+		String sql = "SELECT * FROM plants WHERE id = ?";
+		SqlRowSet result = template.queryForRowSet(sql, id);
+		while(result.next()) {
+			plant = mapRowToPlant(result);
+		}
+		return plant;
+	}
+	
 
 	
 	private Plant mapRowToPlant(SqlRowSet results) {
@@ -41,4 +53,8 @@ public class JDBCPlantsDAO implements PlantDAO {
 		plant.setPlot(results.getInt("plot"));
 		return plant;
 	}
+
+
+
+
 }

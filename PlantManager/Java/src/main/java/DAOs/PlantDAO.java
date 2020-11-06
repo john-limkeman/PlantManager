@@ -10,6 +10,6 @@ import com.plantManager.Models.Plant;
 public interface PlantDAO {
 
 	public List<Plant> getAllPlantsByUserId(long id);
-	
+	public Plant getPlantById(long id);
 	
 }
