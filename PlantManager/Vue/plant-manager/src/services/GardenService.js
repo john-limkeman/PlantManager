@@ -9,5 +9,8 @@ export default {
     },
     getPlantById(id){
         return axios.get(`/plant/${id}`)
-    }
+    },
+    DeletePlantById(id){
+        return axios.delete(`/plant/${id}`)
+    } //not connected to anything
 }
