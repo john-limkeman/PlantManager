@@ -47,6 +47,20 @@
     transition-property: background-color;
     background-color: lightgreen;
   }
+
+  $plots: 100;
+  @for $x from 1 through $plots {
+    #plot-#{$x}{
+    background-color: green;
+    border: solid, black, 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    }
+    $x: $x + 1; 
+  }
   #closedPanel{
        position: fixed;
       right:0px;
