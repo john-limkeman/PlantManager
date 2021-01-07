@@ -20,7 +20,7 @@ public class JDBCGardenDAO implements GardenDAO {
 		String sql = "SELECT * FROM gardens WHERE user_id = ?";
 		SqlRowSet results = template.queryForRowSet(sql, id);
 		while (results.next()) {
-
+			garden = mapRowToGarden(results);
 		}
 
 		return garden;
@@ -32,7 +32,7 @@ public class JDBCGardenDAO implements GardenDAO {
 		String sql = "SELECT * FROM gardens WHERE id = ?";
 		SqlRowSet results = template.queryForRowSet(sql, id);
 		while (results.next()) {
-
+			garden = mapRowToGarden(results);
 		}
 		return garden;
 	}
