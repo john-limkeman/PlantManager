@@ -28,5 +28,11 @@ public class JDBCGardenDAO implements GardenDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public Garden mapRowToGarden(SqlRowSet row) {
+		Garden garden = new Garden();
+		
+		return garden;
+	}
 
 }
