@@ -2,8 +2,8 @@ package com.plantManager.Models;
 
 public class Garden {
 	private long id;
-	private long user_id;
-	private boolean[] plots;
+	private long userId;
+	private Boolean[] plots;
 	
 	
 	public long getId() {
@@ -13,16 +13,16 @@ public class Garden {
 		this.id = id;
 	}
 	public long getUser_id() {
-		return user_id;
+		return userId;
 	}
-	public void setUser_id(long user_id) {
-		this.user_id = user_id;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
-	public boolean[] getPlots() {
+	public Boolean[] getPlots() {
 		return plots;
 	}
-	public void setPlots(boolean[] plots) {
-		this.plots = plots;
+	public void setPlots(Boolean[] plots2) {
+		this.plots = plots2;
 	}
 	
 	
